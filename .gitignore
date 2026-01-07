@@ -1,0 +1,10 @@
+node_modules/
+dist/
+docs/
+*.log
+.DS_Store
+*.tmp
+temp/
+coverage/
+*.test.ts.snap
+
