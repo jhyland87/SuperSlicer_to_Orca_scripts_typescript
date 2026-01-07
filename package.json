@@ -1,0 +1,43 @@
+{
+  "name": "superslicer-to-orca",
+  "version": "1.0.0",
+  "description": "Convert PrusaSlicer and SuperSlicer INI profiles to OrcaSlicer JSON format",
+  "main": "dist/index.js",
+  "bin": {
+    "superslicer-to-orca": "./dist/index.js",
+    "superslicer-to-orca-ts": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "docs": "typedoc --out docs src",
+    "docs:json": "typedoc --json docs/api.json src",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "keywords": [
+    "slicer",
+    "prusaslicer",
+    "superslicer",
+    "orcaslicer",
+    "converter"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cli-table3": "^0.6.5",
+    "commander": "^12.1.0",
+    "glob": "^11.0.0",
+    "inquirer": "^9.2.15"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^22.19.3",
+    "ts-node": "^10.9.2",
+    "typedoc": "^0.28.15",
+    "typescript": "~5.8.3",
+    "vitest": "^2.1.8"
+  }
+}

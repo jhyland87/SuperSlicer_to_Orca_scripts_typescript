@@ -1,0 +1,21 @@
+{
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "theme": "default",
+  "name": "SuperSlicer to OrcaSlicer Converter",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true,
+  "readme": "README.md",
+  "categorizeByGroup": true,
+  "categoryOrder": [
+    "Configuration",
+    "Conversion",
+    "File I/O",
+    "Utilities",
+    "Menu",
+    "*"
+  ]
+}
+
