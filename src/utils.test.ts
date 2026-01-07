@@ -11,10 +11,9 @@ import {
   evaluatePrintOrder,
   evaluateIroningType,
   getOS,
-  getHomeDir,
-  isOutputIniType,
-  isValidIniType
+  getHomeDir
 } from './utils';
+import { isOutputIniType, isValidIniType } from './type-guards';
 import type { IniType } from './types';
 
 describe('utils', () => {

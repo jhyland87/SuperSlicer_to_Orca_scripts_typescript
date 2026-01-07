@@ -1,6 +1,6 @@
 /**
  * Utility functions for value validation, conversion, and type checking.
- * 
+ *
  * This module provides helper functions for:
  * - Validating and converting numeric values (decimals, percentages)
  * - Converting between percentage and absolute values
@@ -151,7 +151,7 @@ export function percentToMm(
   if (mmComparator === '' || percentParam === '') return undefined;
   if (!isPercent(percentParam)) return percentParam;
   if (isPercent(String(mmComparator))) return undefined;
-  
+
   const mmVal = typeof mmComparator === 'number' ? mmComparator : parseFloat(String(mmComparator));
   const percentVal = parseFloat(removePercent(percentParam));
   return String(mmVal * (percentVal / 100));
@@ -178,7 +178,7 @@ export function mmToPercent(
   if (!mmComparator || !mmParam) return undefined;
   if (isPercent(mmParam)) return mmParam;
   if (isPercent(String(mmComparator))) return undefined;
-  
+
   const comparator = typeof mmComparator === 'number' ? mmComparator : parseFloat(String(mmComparator));
   const param = parseFloat(mmParam);
   if (comparator === 0) return undefined;
@@ -273,47 +273,4 @@ export function getHomeDir(): string {
   return process.env.HOME || process.env.USERPROFILE || '';
 }
 
-/**
- * Type guard to check if an IniType is a valid output type (print, filament, or printer).
- *
- * @param iniType - The ini type to check
- * @returns `true` if the type is 'print', 'filament', or 'printer'; `false` otherwise
- *
- * @remarks
- * This is used to narrow the type for accessing systemDirectories.output which only
- * has keys for these three types, excluding 'physical_printer' and 'unsupported'.
- *
- * @example
- * ```ts
- * if (isOutputIniType(status.iniType)) {
- *   // TypeScript now knows status.iniType is OutputIniType
- *   const dirs = systemDirectories.output[status.iniType];
- * }
- * ```
- */
-export function isOutputIniType(iniType: IniType): iniType is OutputIniType {
-  return iniType === 'print' || iniType === 'filament' || iniType === 'printer';
-}
-
-/**
- * Type guard to check if an IniType is valid and not 'unsupported'.
- *
- * @param iniType - The ini type to check (may be undefined)
- * @returns `true` if the type is defined and not 'unsupported'; `false` otherwise
- *
- * @remarks
- * This excludes 'unsupported' from the type, allowing safe access to parameter maps
- * and other type-specific operations.
- *
- * @example
- * ```ts
- * if (isValidIniType(status.iniType)) {
- *   // TypeScript now knows status.iniType is not 'unsupported'
- *   const typeMap = parameterMap[status.iniType];
- * }
- * ```
- */
-export function isValidIniType(iniType: IniType | undefined): iniType is Exclude<IniType, 'unsupported'> {
-  return iniType !== undefined && iniType !== 'unsupported';
-}
 

@@ -1,6 +1,6 @@
 /**
  * Core conversion logic for transforming INI parameters to OrcaSlicer JSON format.
- * 
+ *
  * This module handles:
  * - Parameter conversion with special case handling
  * - Print parameter calculations (speeds, print order, etc.)
@@ -26,9 +26,9 @@ import {
   percentToMm,
   mmToPercent,
   evaluatePrintOrder,
-  evaluateIroningType,
-  isValidIniType
+  evaluateIroningType
 } from './utils';
+import { isValidIniType } from './type-guards';
 import {
   multivalueParams,
   filamentTypes,

@@ -31,10 +31,9 @@ import {
   getOS,
   getHomeDir,
   multivalueToArray,
-  isDecimal,
-  isOutputIniType,
-  isValidIniType
+  isDecimal
 } from './utils';
+import { isOutputIniType, isValidIniType } from './type-guards';
 import { OutputIniType } from './types';
 import {
   readIniFile,
