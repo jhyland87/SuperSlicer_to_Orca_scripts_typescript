@@ -872,7 +872,13 @@ async function main(): Promise<void> {
         continue;
       }
       if (typeof mappedKey === 'string') {
-        newHash[mappedKey] = newValue;
+        // Handle compatible_printers and compatible_prints - convert semicolon-separated strings to arrays
+        if ((mappedKey === 'compatible_printers' || mappedKey === 'compatible_prints') && typeof newValue === 'string') {
+          const printers = multivalueToArray(newValue);
+          newHash[mappedKey] = printers.length > 0 ? printers : [];
+        } else {
+          newHash[mappedKey] = newValue;
+        }
       }
 
       // Track max temperature
@@ -899,6 +905,15 @@ async function main(): Promise<void> {
       newHash['nozzle_temperature_range_high'] = String(status.maxTemp);
       if (sourceIni['slowdown_below_layer_time']) {
         newHash['slow_down_for_layer_cooling'] = parseFloat(sourceIni['slowdown_below_layer_time']) > 0 ? '1' : '0';
+      }
+      // Ensure compatible_printers is always present for filament profiles
+      // OrcaSlicer requires this field to be present (as an array), even if empty
+      // An empty array makes the filament compatible with all printers
+      if (!('compatible_printers' in newHash)) {
+        newHash['compatible_printers'] = [];
+      } else if (!Array.isArray(newHash['compatible_printers'])) {
+        // Should not happen due to conversion above, but ensure it's an array
+        newHash['compatible_printers'] = [];
       }
     } else if (status.iniType === 'print') {
       await calculatePrintParams(sourceIni, status, newHash);
