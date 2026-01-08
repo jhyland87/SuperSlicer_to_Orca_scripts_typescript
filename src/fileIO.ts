@@ -1,6 +1,6 @@
 /**
  * File I/O operations for reading INI files, writing JSON files, and handling config bundles.
- * 
+ *
  * This module provides functions for:
  * - Reading and parsing INI files
  * - Reading and writing JSON files
@@ -272,7 +272,8 @@ export function processConfigBundle(
   } else if (os === 'darwin') {
     illegalRegex = /[:]/;
   } else {
-    illegalRegex = /\//;
+    // Linux: colons and forward slashes are illegal in filenames
+    illegalRegex = /[:/]/;
   }
 
   while ((match = regex.exec(content)) !== null) {
