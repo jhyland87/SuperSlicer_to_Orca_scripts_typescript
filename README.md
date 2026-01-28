@@ -1,3 +1,7 @@
+> [!NOTE]
+> FYI - Quick script made with AI to avoid dealing with Perl, because it's not 2005 anymore.
+
+
 # SuperSlicer to OrcaSlicer Converter
 
 Convert PrusaSlicer and SuperSlicer INI profile files to OrcaSlicer JSON format. Available in both **Perl** and **TypeScript/Node.js** versions.
